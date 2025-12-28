@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday 🎉</title>
+<style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: 'Comic Sans MS', cursive;
+        overflow: hidden;
+    }
+
+    /* Cover/landing page */
+    #cover {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #00bfff, #87cefa);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        color: white;
+        text-align: center;
+        z-index: 10;
+        transition: opacity 0.5s;
+    }
+
+    #cover h1 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        text-shadow: 0 0 10px #000;
+    }
+
+    #startButton {
+        padding: 15px 30px;
+        font-size: 1.5rem;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        background-color: #fff;
+        color: #00bfff;
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        transition: transform 0.2s;
+    }
+
+    #startButton:hover {
+        transform: scale(1.1);
+    }
+
+    /* Main content hidden initially */
+    #mainContent {
+        display: none;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #ff758c, #ff7eb3);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    h1.main {
+        color: white;
+        font-size: 3.5rem;
+        animation: bounce 1.5s infinite;
+        text-shadow: 0 0 15px #fff;
+    }
+
+    h2 {
+        color: white;
+        font-size: 2rem;
+        margin-top: 5px;
+    }
+
+    @keyframes bounce {
+        0%,100% { transform: translateY(0); }
+        50% { transform: translateY(-20px); }
+    }
+
+    .container {
+        display: flex;
+        gap: 40px;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    .girl-pic {
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 6px solid white;
+        box-shadow: 0 0 20px rgba(255,255,255,0.8);
+        animation: glow 2s infinite;
+    }
+
+    @keyframes glow {
+        0% { box-shadow: 0 0 10px white; }
+        50% { box-shadow: 0 0 25px white; }
+        100% { box-shadow: 0 0 10px white; }
+    }
+
+    .shinchan {
+        width: 280px;
+        animation: dance 1s infinite alternate;
+    }
+
+    @keyframes dance {
+        0% { transform: rotate(-5deg); }
+        100% { transform: rotate(5deg); }
+    }
+
+    .balloon {
+        position: absolute;
+        bottom: -150px;
+        width: 40px;
+        height: 60px;
+        border-radius: 50%;
+        animation: float 8s infinite;
+        opacity: 0.9;
+    }
+
+    @keyframes float {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(-120vh); }
+    }
+
+    p {
+        color: white;
+        font-size: 1.4rem;
+        margin-top: 15px;
+    }
+
+</style>
+</head>
+<body>
+
+<!-- Landing/Cover -->
+<div id="cover">
+    <h1>🎉 Surprise! 🎉</h1>
+    <p></p>
+    <button id="startButton">🎂 OPEN KR MOTI 🎂</button>
+</div>
+
+<!-- Main Birthday Content -->
+<div id="mainContent">
+    <h1 class="main">🎂 Happy Birthday 🎉</h1>
+    <h2 id="name">Dear Sonam 🦋💖</h2>
+
+    <div class="container">
+        <img src="her.jpg" alt="Birthday Girl" class="girl-pic">
+        <img src="shinchan.gif" alt="Shinchan" class="shinchan">
+    </div>
+
+    <p>Shin-chan wishes you a very Happy Birthday 😄💖</p>
+
+    <audio id="birthdayAudio">
+        <source src="shinchan_birthday.mp3" type="audio/mpeg">
+    </audio>
+</div>
+
+<script>
+    const startBtn = document.getElementById('startButton');
+    const cover = document.getElementById('cover');
+    const main = document.getElementById('mainContent');
+    const audio = document.getElementById('birthdayAudio');
+
+    startBtn.addEventListener('click', () => {
+        // Hide cover with fade effect
+        cover.style.opacity = 0;
+        setTimeout(() => { cover.style.display = 'none'; }, 500);
+
+        // Show main content
+        main.style.display = 'flex';
+
+        // Play audio
+        audio.play();
+
+        // Create balloons
+        for (let i = 0; i < 30; i++) {
+            let balloon = document.createElement("div");
+            balloon.className = "balloon";
+            balloon.style.left = Math.random() * 100 + "vw";
+            balloon.style.background = `hsl(${Math.random() * 360}, 70%, 60%)`;
+            balloon.style.animationDuration = (5 + Math.random() * 5) + "s";
+            document.body.appendChild(balloon);
+        }
+    });
+</script>
+
+</body>
+</html>
